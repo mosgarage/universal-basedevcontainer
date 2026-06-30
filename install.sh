@@ -1,8 +1,8 @@
 #!/bin/bash
-# Quick installer for Universal Dev Container
+# Quick installer for Universal Basedevcontainer
 set -euo pipefail
 
-echo "Installing Universal Dev Container..."
+echo "Installing Universal Basedevcontainer..."
 
 # Check if .devcontainer already exists
 if [[ -d ".devcontainer" ]]; then
@@ -17,7 +17,7 @@ if [[ -d ".devcontainer" ]]; then
 fi
 
 # Download from main branch (contains latest fixes)
-REPO="${GITHUB_USER:-brianoestberg}/universal-devcontainer"
+REPO="${GITHUB_USER:-mosgarage}/universal-basedevcontainer"
 DOWNLOAD_URL="https://github.com/$REPO/archive/main.tar.gz"
 echo "Downloading from main branch..."
 
@@ -35,5 +35,5 @@ if [[ -x ".devcontainer/scripts/setup-wizard.sh" ]]; then
 fi
 
 echo ""
-echo "✓ Universal Dev Container installed successfully!"
+echo "✓ Universal Basedevcontainer installed successfully!"
 echo "  Open this folder in VS Code and reopen in container"
