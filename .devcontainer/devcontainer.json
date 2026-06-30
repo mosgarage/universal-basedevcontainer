@@ -1,5 +1,5 @@
 {
-  "name": "Mosgarage Universal Dev Container",
+  "name": "Mosgarage Universal Devcontainer",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
@@ -39,13 +39,13 @@
     }
   },
 
-  "remoteUser": "developer",
+  "remoteUser": "dev",
 
   "mounts": [
     "source=devcontainer-history,target=/commandhistory,type=volume",
-    "source=devcontainer-vscode,target=/home/developer/.vscode-server,type=volume",
-    "source=devcontainer-config,target=/home/developer/.config/devcontainer,type=volume",
-    "source=devcontainer-extensions,target=/home/developer/.vscode-server/extensions,type=volume"
+    "source=devcontainer-vscode,target=/home/dev/.vscode-server,type=volume",
+    "source=devcontainer-config,target=/home/dev/.config/devcontainer,type=volume",
+    "source=devcontainer-extensions,target=/home/dev/.vscode-server/extensions,type=volume"
   ],
 
   "remoteEnv": {
@@ -73,13 +73,13 @@
   // Features for additional functionality (optional)
   "features": {
     // Uncomment to add Docker-in-Docker support
-    // "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     
     // Uncomment to add specific language support
-    // "ghcr.io/devcontainers/features/node:1": {},
-    // "ghcr.io/devcontainers/features/python:1": {},
-    // "ghcr.io/devcontainers/features/go:1": {},
-    // "ghcr.io/devcontainers/features/rust:1": {}
+     "ghcr.io/devcontainers/features/node:1": {},
+     "ghcr.io/devcontainers/features/python:1": {},
+     "ghcr.io/devcontainers/features/go:1": {},
+     "ghcr.io/devcontainers/features/rust:1": {}
   },
   
   "shutdownAction": "stopContainer",
