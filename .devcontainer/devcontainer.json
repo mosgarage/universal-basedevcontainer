@@ -1,0 +1,95 @@
+{
+  "name": "Mosgarage Universal Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "TIMEZONE": "${localEnv:TZ:UTC}",
+      "LOCALE": "${localEnv:LANG:en_US.UTF-8}",
+      "USERNAME": "dev"
+    },
+    "options": [
+      "--progress=plain"
+    ]
+  },
+  
+  "runArgs": [
+    "--init",
+    "--cap-add=SYS_PTRACE",
+    "--security-opt", "seccomp=unconfined",
+    "--shm-size=2gb"
+  ],
+
+  "customizations": {
+    "vscode": {
+      // Core extensions only - project-specific ones installed dynamically
+      "extensions": [
+        // Extensions are managed by scripts/install-extensions.sh
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "bash": { "path": "bash", "icon": "terminal-bash" },
+          "zsh":  { "path": "zsh"  }
+        },
+        "editor.formatOnSave": false,  // Let projects decide
+        "extensions.autoCheckUpdates": false,
+        "extensions.autoUpdate": false,
+        "telemetry.telemetryLevel": "off"
+      }
+    }
+  },
+
+  "remoteUser": "developer",
+
+  "mounts": [
+    "source=devcontainer-history,target=/commandhistory,type=volume",
+    "source=devcontainer-vscode,target=/home/developer/.vscode-server,type=volume",
+    "source=devcontainer-config,target=/home/developer/.config/devcontainer,type=volume",
+    "source=devcontainer-extensions,target=/home/developer/.vscode-server/extensions,type=volume"
+  ],
+
+  "remoteEnv": {
+    "DEVCONTAINER": "true",
+    "DEVCONTAINER_TYPE": "universal",
+    "LANG": "${localEnv:LANG:en_US.UTF-8}",
+    "LC_ALL": "${localEnv:LANG:en_US.UTF-8}",
+    "EDITOR": "vim",
+    "HISTFILE": "/commandhistory/.zsh_history"
+  },
+
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+
+  // Lifecycle scripts (disabled for now to avoid errors)
+  // "onCreateCommand": "/usr/local/bin/devcontainer-scripts/dev-setup.sh --non-interactive || true",
+  // "postStartCommand": "echo 'Container started successfully!'",
+  // "postAttachCommand": "/usr/local/bin/devcontainer-scripts/install-extensions.sh || true",
+  
+  "containerEnv": {
+    "DOCKER_BUILDKIT": "1",
+    "COMPOSE_DOCKER_CLI_BUILD": "1"
+  },
+  
+  // Features for additional functionality (optional)
+  "features": {
+    // Uncomment to add Docker-in-Docker support
+    // "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    
+    // Uncomment to add specific language support
+    // "ghcr.io/devcontainers/features/node:1": {},
+    // "ghcr.io/devcontainers/features/python:1": {},
+    // "ghcr.io/devcontainers/features/go:1": {},
+    // "ghcr.io/devcontainers/features/rust:1": {}
+  },
+  
+  "shutdownAction": "stopContainer",
+  
+  // Port forwarding
+  "forwardPorts": [],
+  
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "uname -a",
+  
+  // Comment out to connect as root instead.
+  "updateRemoteUserUID": true
+}

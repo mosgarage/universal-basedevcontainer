@@ -1,0 +1,38 @@
+name: Mosgarage Dev Container
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  mosgarage:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build Dev Container
+      run: |
+        cd .devcontainer
+        docker build -f Dockerfile -t universal-basedevcontainer:latest .
+    
+    - name: Universal Basedevcontainer Startup
+      run: |
+        docker run --rm universal-basedevcontainer:latest sh -c "
+          echo 'Testing basic commands...' &&
+          git --version &&
+          zsh --version &&
+          vim --version | head -1 &&
+          echo 'Container universal-basedevcontainer passed!'
+        "
+    
+    - name: Universal Basedevcontainer Scripts Exist
+      run: |
+        docker run --rm -v $PWD/.devcontainer:/mosgarage universal-basedevcontainer:latest sh -c "
+          universal-basedevcontainer -x /universal-basedevcontainer/scripts/setup-wizard.sh &&
+          universal-basedevcontainer -x /universal-basedevcontainer/scripts/install-extensions.sh &&
+          universal-basedevcontainer -x /universal-basedevcontainer/scripts/update-tools.sh &&
+          echo 'All scripts are executable'
+        '
