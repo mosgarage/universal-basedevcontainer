@@ -5,9 +5,9 @@ FROM ubuntu:22.04 AS base
 # Build arguments for customization
 ARG TIMEZONE=UTC
 ARG LOCALE=en_US.UTF-8
-ARG USERNAME=developer
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
+ARG USERNAME=mosgarage
+ARG USER_UID=1001
+ARG USER_GID=1001
 
 # Prevent interactive prompts during apt install
 ENV DEBIAN_FRONTEND=noninteractive
