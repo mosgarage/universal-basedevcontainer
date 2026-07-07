@@ -24,12 +24,12 @@ A highly optimized, reusable development container that works across all project
 
 ```bash
 # Quick install (replace brianoestberg with your GitHub username)
-curl -sSL https://raw.githubusercontent.com/brianoestberg/universal-devcontainer/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/mosgarage/universal-basedevcontainer/main/install.sh | bash
 
 # Or clone manually
-git clone https://github.com/brianoestberg/universal-devcontainer.git
-cp -r universal-devcontainer/.devcontainer .
-rm -rf universal-devcontainer
+git clone https://github.com/mosgarage/universal-basedevcontainer.git
+cp -r universal-basedevcontainer/.devcontainer .
+rm -rf universal-basedevcontainer
 ```
 
 ### Run Setup Wizard
@@ -62,7 +62,7 @@ The container automatically detects and configures:
 
 ```bash
 # Install in new project
-curl -sSL https://raw.githubusercontent.com/brianoestberg/universal-devcontainer/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/mosgarage/universal-basedevcontainer/main/install.sh | bash
 
 # Run setup wizard
 ./.devcontainer/scripts/setup-wizard.sh
