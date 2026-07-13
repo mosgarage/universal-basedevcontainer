@@ -5,7 +5,7 @@
 user:
   timezone: Europe/London
   locale: ${LOCALE:-en_US.UTF-8}
-  username: dev
+  username: mosgarage
   dotfiles:
     repository: ${DOTFILES_REPO:-}
     install_command: ${DOTFILES_INSTALL_CMD:-}

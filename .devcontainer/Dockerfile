@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 # Universal Dev Container - Base for all projects
-FROM ubuntu:22.04 AS base
+FROM ubuntu:24.04 AS base
 
 # Build arguments for customization
 ARG TIMEZONE=UTC
@@ -90,7 +90,7 @@ RUN ARCH=$(dpkg --print-architecture) && \
     rm "git-delta_${DELTA_VERSION}_${ARCH}.deb"
 
 # Switch to non-root user
-USER $USERNAME
+USER mosgarage
 WORKDIR /home/$USERNAME
 
 # Set up shell
@@ -168,6 +168,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD command -v git && command -v zsh || exit 1
 
 # Labels for metadata
-LABEL maintainer="Your Name"
+LABEL maintainer="Moses Fab"
 LABEL version="1.0.0"
 LABEL description="Universal Development Container"
